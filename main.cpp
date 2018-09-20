@@ -23,12 +23,16 @@ int main()
         cout << vec[i] << " ";
     }; cout << endl;
 
-    quickSort(&vec[0], &vec[sizeof(vec)/sizeof(int)-1]);
+    ///
+    //quickSort(vec, &vec[sizeof(vec)/sizeof(int)-1]);
+    countingSort(vec, sizeof(vec)/sizeof(int));
+    ///
 
     for(int i = 0; i < sizeof(vec)/sizeof(int); i++) {
         cout << vec[i] << " ";
     }; cout << endl;
 
+    /*
     int v2[] = {6,5,7,2,4,3};
     int *vPtr = new int[6];
     for(int i = 0; i < 6; i++) {
@@ -40,6 +44,12 @@ int main()
     for(int i = 0; i < 6; i++) {
         cout << vPtr[i] << " ";
     }
+    */
+
+    int s = 6;
+    int *arr = new int[s]();
+
+    printVec(arr, 6);
 
     return 0;
 }

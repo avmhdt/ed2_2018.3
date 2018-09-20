@@ -32,10 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="headers/deputado.h" />
 		<Unit filename="headers/libraries.h" />
 		<Unit filename="headers/sorting.h" />
+		<Unit filename="headers/util.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/deputado.cpp" />
 		<Unit filename="src/sorting.cpp" />
+		<Unit filename="src/util.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
