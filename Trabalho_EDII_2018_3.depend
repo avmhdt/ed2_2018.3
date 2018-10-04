@@ -1,25 +1,35 @@
 # depslib dependency file v1.0
-1537481660 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/main.cpp
+1538660936 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/main.cpp
 	"headers/libraries.h"
 
-1537480726 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/libraries.h
+1538234248 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/libraries.h
 	<iostream>
 	<string>
 	<cmath>
 	<vector>
 	<cstdlib>
+	<string>
+	<stdio.h>
+	<fstream>
+	<ctime>
 	"sorting.h"
 	"util.h"
+	"deputado.h"
 
-1537480765 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/sorting.h
+1538317898 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/sorting.h
+	"deputado.h"
 
-1537482133 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/sorting.cpp
+1538663483 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/sorting.cpp
 	"../headers/libraries.h"
 
-1537466098 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/deputado.cpp
-
-1537480866 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/util.h
-
-1537480881 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/util.cpp
+1538588073 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/deputado.cpp
 	"../headers/libraries.h"
+
+1538318501 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/util.h
+	"deputado.h"
+
+1538350246 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/util.cpp
+	"../headers/libraries.h"
+
+1537486851 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/deputado.h
 

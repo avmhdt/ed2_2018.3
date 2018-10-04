@@ -6,10 +6,15 @@
 #include <cmath>
 #include <vector>
 #include <cstdlib>
+#include <string>
+#include <stdio.h>
+#include <fstream>
+#include <ctime>
 
 using namespace std;
 
 #include "sorting.h"
 #include "util.h"
+#include "deputado.h"
 
 #endif // LIBRARIES_H_INCLUDED

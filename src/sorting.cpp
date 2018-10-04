@@ -1,20 +1,71 @@
 #include "../headers/libraries.h"
 
-int *partitionIt(int *left, int *right, int pivot) {
+int *partitionIt(int *left, int *right, int pivot, int *comp, int *trocas) {
     int *leftPtr = left-1;
     int *rightPtr = right;
 
     while(true) {
-        while(*(++leftPtr) < pivot);
-        while(rightPtr > 0  && *(--rightPtr) > pivot);
+        (*comp) += 1;
+        while(*(++leftPtr) < pivot) {
+            (*comp) += 1;
+        }
+        (*comp) += 1;
+        while(rightPtr > 0 && *(--rightPtr) > pivot) {
+            (*comp) += 1;
+        }
         if(leftPtr >= rightPtr)
             break;
-        else swapPtr(leftPtr, rightPtr);
+        else {
+            swapPtr(leftPtr, rightPtr)
+            (*trocas) += 1;
+        }
     } // end while(true)
 
     swapPtr(leftPtr, right);
+    (*trocas) += 1;
     return leftPtr;
 } /// end partitionIt();
+
+/*
+GastoDeputado *partitionItDeputyId(GastoDeputado *leftDep, GastoDeputado *rightDep, int pivot) {
+    GastoDeputado *leftPtr = leftDep-1; cout << "part: leftPtr" << endl;
+    GastoDeputado *rightPtr = rightDep; cout << "part: rightPtr" << endl;
+
+    while(true) { cout << "part: while(true)" << endl;
+        while((*(++leftPtr)).getDeputyId() < pivot); cout << "part: while(leftPtr). rightPtr = " << rightPtr << endl;
+        while(rightPtr > 0  && (*(--rightPtr)).getDeputyId() > pivot); cout << "part: while(rightPtr)" << endl;
+        if(leftPtr >= rightPtr) {cout << "part: if(leftPtr >= rightPtr)" << endl;
+            break;}
+        else swapPtrDep(leftPtr, rightPtr); cout << "part: else" << endl;
+    } // end while(true)
+
+    swapPtrDep(leftPtr, rightDep); cout << "part: swap" << endl;
+    return leftPtr;
+} /// end partitionItDeputyId();
+*/
+
+GastoDeputado *partitionItDeputyId(GastoDeputado *leftDep, GastoDeputado *rightDep, int pivot, int *comp, int *trocas)
+{
+    // pivot (Element to be placed at right position)
+    //pivot = arr[high];
+
+    //i = (low - 1)  // Index of smaller element
+    GastoDeputado *leftPtr = leftDep-1;
+    GastoDeputado *idx;
+
+    for (idx = leftDep; idx <= rightDep-1; idx++) {
+        (*comp) += 1;
+        if((*idx).getDeputyId() <= pivot) { // If current element is smaller than or equal to pivot
+            leftPtr++;    // increment index of smaller element
+            swapPtrDep(leftPtr, idx);
+            (*trocas) += 1;
+        }
+    }
+
+    swapPtrDep(leftPtr+1, rightDep);
+    (*trocas) += 1;
+    return leftPtr+1;
+} /// end partitionItDeputyId();
 
 
 void manualSort(int *left, int *right) {
@@ -71,7 +122,8 @@ int medianOfK(int *left, int *right, int k) {           ///CERTO?? COMO ORDENAR 
 } /// end medianOfK();
 
 
-void quickSort(int *left, int *right) {
+void quickSort(int *left, int *right, int *comp, int *trocas) {
+    (*comp) += 1;
     if(right - left <= 0)               // if size <= 1,
         return;                         // already Sorted
     else {                              // size is 2 or larger
@@ -83,7 +135,19 @@ void quickSort(int *left, int *right) {
 } /// end quickSort();
 
 
-void quickSortMedian(int *left, int *right, int k) {
+void quickSortDeputyId(GastoDeputado *leftDep, GastoDeputado *rightDep, int *comp, int *trocas) {
+    if(rightDep - leftDep <= 0)                    // if size <= 1,
+        return;                                    // already Sorted
+    else {                                         // size is 2 or larger
+        int pivot = (*rightDep).getDeputyId();     // rightmost item as pivot
+        GastoDeputado *part = partitionItDeputyId(leftDep, rightDep, pivot, int *comp, int *trocas);
+        quickSortDeputyId(leftDep, part-1);        // Sort left side
+        quickSortDeputyId(part+1, rightDep);       // Sort right side
+    }
+} /// end quickSortDeputyId();
+
+
+void quickSortMedian(int *left, int *right, int k, int *comp, int *trocas) {
     int sizeVec = right-left+1;
     if(sizeVec <= 3)                    // manual Sort if small,
         manualSort(left, right);
@@ -96,7 +160,7 @@ void quickSortMedian(int *left, int *right, int k) {
 } /// end quickSortMedian();
 
 
-void quickSortInsertion(int *left, int *right, int m) {
+void quickSortInsertion(int *left, int *right, int m, int *comp, int *trocas) {
     int sizeVec = right-left+1;
     if(sizeVec <= m)                    // manual Sort if small,
         insertionSort(left, sizeVec);
@@ -109,7 +173,7 @@ void quickSortInsertion(int *left, int *right, int m) {
 } /// end quickSortInsertion();
 
 
-void insertionSort(int *vec, int vecSize) {
+void insertionSort(int *vec, int vecSize, int *comp, int *trocas) {
     int pivot, i, j;
     for(i = 0; i < vecSize; i++) {
         pivot = *(vec+i);
@@ -123,7 +187,7 @@ void insertionSort(int *vec, int vecSize) {
 } /// end insertionSort();
 
 
-void mergeVec(int *vec, int l, int m, int r) {
+void mergeVec(int *vec, int l, int m, int r, int *comp, int *trocas) {
     int i, j, k; // índices
     int n1 = m-l+1, n2 = r-m; // tamanho dos subvetores esquerdo e direito
     int *L, *R;
@@ -165,7 +229,7 @@ void mergeVec(int *vec, int l, int m, int r) {
 } /// end mergeVec();
 
 
-void mergeSort(int *vec, int l, int r) {
+void mergeSort(int *vec, int l, int r, int *comp, int *trocas) {
     int m;
 
     if(l < r) {
@@ -179,7 +243,7 @@ void mergeSort(int *vec, int l, int r) {
 } /// end mergeSort();
 
 
-void selectionSort(int *vec, int vecSize) {
+void selectionSort(int *vec, int vecSize, int *comp, int *trocas) {
     int j, idxMin;
 
     for(int i = 0; i < vecSize-1; i++)
@@ -194,7 +258,7 @@ void selectionSort(int *vec, int vecSize) {
 } /// end selectionSort();
 
 
-void countingSort(int *vec, int vecSize) { // versão modificada do algoritmo countingSort
+void countingSort(int *vec, int vecSize, int *comp, int *trocas) { // versão modificada do algoritmo countingSort
     int minRange, maxRange, range, i;
     minRange = minVec(vec, vecSize); // vecSize operações (O(n))
     maxRange = maxVec(vec, vecSize); // vecSize operações (O(n))
