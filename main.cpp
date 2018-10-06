@@ -246,10 +246,6 @@ int main() {
                 conjuntoIds[k] = allDeputados[randLine].getDeputyId(); // armazena o deputyId linha no vetor de inteiros
             }
 
-            for(k = 0; k < NValues[j]; k++) {
-                cout << conjuntoDeputados[k].getDeputyId() << "   conjuntoDeputados pre" << endl;
-            }
-
             // ordena o conjunto
 
             switch(CENARIO) {
@@ -298,7 +294,7 @@ int main() {
                     saida << "\n" << endl;
 
                     for(k = 0; k < NValues[j]; k++) {
-                        cout << conjuntoIds[k] << "   conjuntoIds pre" << endl;
+                        cout << conjuntoIdsAux[k] << "   conjuntoIds ord" << endl;
                     }
 
                     break;
@@ -310,6 +306,12 @@ int main() {
                         for(k = 0; k < NValues[j]; k++) {
                             conjuntoIdsAux[k] = conjuntoIds[k];
                         }
+
+                        /*for(k = 0; k < NValues[j]; k++) {
+                            cout << conjuntoIdsAux[k] << "   conjuntoIdsAux pre" << endl;
+                        }*/
+
+
                         switch(l) {
                             case 0:
                                 *comp = 0; *copias = 0;
@@ -369,6 +371,13 @@ int main() {
                         saida << *comp << endl;
                         saida << *copias << endl;
                         saida << "\n" << endl;
+
+                        cout << "l = " << l << endl << endl;
+
+                        /*for(k = 0; k < NValues[j]; k++) {
+                            cout << conjuntoIdsAux[k] << "   conjuntoIdsAux ord" << endl;
+                        }*/
+
                     }
 
                     break;
@@ -444,38 +453,19 @@ int main() {
                     break;
 
 
-                case 4:
-                    /// ALGORITMOS DE PESQUISA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    break;
+                //case 4:
+                //    /// ALGORITMOS DE PESQUISA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //    break;
             }
 
-
-
-
-            /*
-            for(k = 0; k < NValues[j]; k++) {
-                cout << conjuntoDeputados[k].getDeputyId() << "   conjunto ord" << endl;
-            }
-
-            for(k = 0; k < NValues[j]; k++) {
-                cout << conjuntoIds[k] << "   conjuntoIds ord" << endl;
+            /*for(k = 0; k < NValues[j]; k++) {
+                cout << conjuntoIdsAux[k] << "   conjuntoIdsAux ord" << endl;
             }*/
-
-            //checa se esta ordenado
-            /*
-            if(!ordenado(&(conjuntoDeputados[0]), NValues[j]))
-                cout << "ConjuntoDeputados nao foi ordenado corretamente." << endl;
-            else cout << "ConjuntoDeputados Ordenado." << endl;
-
-            if(!ordenado(&(conjuntoIds[0]), NValues[j]))
-                cout << "ConjuntoIds nao foi ordenado corretamente." << endl;
-            else cout << "ConjuntoIds Ordenado." << endl;
-            */
 
             // Valor de N atual (NValues[j]), numero de comparacoes, numero de copias e tempo de execucao
             // coloca em saida.txt
             delete conjuntoIds;
-            delete conjuntoIdsAux;
+            //delete conjuntoIdsAux;
         }
 
 

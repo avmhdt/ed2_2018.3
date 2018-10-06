@@ -74,8 +74,8 @@ GastoDeputado *partitionItDeputyId(GastoDeputado *leftDep, GastoDeputado *rightD
 } /// end partitionItDeputyId();
 */
 
-GastoDeputado *partitionItDeputyId(GastoDeputado *leftDep, GastoDeputado *rightDep, int pivot, int *comp, int *copias)
-{
+GastoDeputado *partitionItDeputyId(GastoDeputado *leftDep, GastoDeputado *rightDep, int pivot, int *comp, int *copias) {
+
     // pivot (Element to be placed at right position)
     //pivot = arr[high];
 
@@ -131,96 +131,107 @@ void manualSort(int *left, int *right, int *comp, int *copias) {
 
 int medianOfK(int *left, int *right, int k, int *comp, int *copias) {           ///CERTO?? COMO ORDENAR OS K ELEMENTOS???
 
-    if(k == 3) {
-        int sizeAux = right-left;
-        int *center = left + sizeAux/2;
-
-        (*comp) += 1;
-        if(*left > *center) {
-            swapPtr(left, center);
-            (*copias) += 1;
-        }
-        (*comp) += 1;
-        if(*left > *right) {
-            swapPtr(left, right);
-            (*copias) += 1;
-        }
-        (*comp) += 1;
-        if(*center > *right) {
-            swapPtr(center, right);
-            (*copias) += 1;
-        }
-
-        swapPtr(center, right-1);
-        (*copias) += 1;
-
-        return *(right-1);
-    }
-
-
-//    int **idxPtrs = new int*[k];
-//    int *pivotPtr;
-//    int pivot, j;
+//    if(k == 3) {
+//        int sizeAux = right-left;
+//        int *center = left + sizeAux/2;
 //
-//    for(int i = 0; i < k; i++) { // Seleciona k índices aleatórios do vetor
-//        idxPtrs[i] = left + randomInt(0, right-left); // Vetor de k ponteiros para elementos do vetor a ser ordenado,
-//                                                         a partir do qual se calcula a mediana.
-//        /*
-//        for(int j = 0; j < i; j++) {
-//            if(idxs[i] == idxs[j]) { // Garante que não hajam 2 números iguais gerados
-//                idxs[i] = randomInt(left + randomInt(0, right-left));
-//                j = 0
-//            }
+//        (*comp) += 1;
+//        if(*left > *center) {
+//            swapPtr(left, center);
+//            (*copias) += 1;
 //        }
-//        */
+//        (*comp) += 1;
+//        if(*left > *right) {
+//            swapPtr(left, right);
+//            (*copias) += 1;
+//        }
+//        (*comp) += 1;
+//        if(*center > *right) {
+//            swapPtr(center, right);
+//            (*copias) += 1;
+//        }
+//
+//        swapPtr(center, right-1);
+//        (*copias) += 1;
+//
+//        return *(right-1);
 //    }
 //
-//    for(int i = 0; i < k; i++) { // Similar ao Insertion Sort
-//        pivotPtr = idxPtrs[i];  // Aqui, devemos ordenar um vetor de ponteiros
-//        pivot = *pivotPtr;       // Com base na ordem dos elementos apontados
-//        j = i-1;                 //
+//
+    int **idxPtrs = new int*[k];
+    int *pivotPtr;
+    int pivot, j;
+
+    for(int i = 0; i < k; i++) { // Seleciona k índices aleatórios do vetor
+        idxPtrs[i] = left + randomInt(0, right-left); // Vetor de k ponteiros para elementos do vetor a ser ordenado,
+                                                      //   a partir do qual se calcula a mediana.
+        /*
+        for(int j = 0; j < i; j++) {
+            if(idxs[i] == idxs[j]) { // Garante que não hajam 2 números iguais gerados
+                idxs[i] = randomInt(left + randomInt(0, right-left));
+                j = 0
+            }
+        }
+        */
+    }
+
+    /*for(int i = 0; i < k; i++) {
+        pivotPtr = idxPtrs[i];  // Aqui, devemos ordenar um vetor de ponteiros
+        pivot = *pivotPtr;       // Com base na ordem dos elementos apontados
+        j = i-1;                 //
+        (*comp) += 1;
+        while(j >= 0 && *(idxPtrs[j]) > pivot) {
+            idxPtrs[j+1] = idxPtrs[j];
+            (*copias) += 1;
+            j--;                         // Desta maneira, podemos achar o endereço do elemento no vetor original
+            (*comp) += 1;
+        } // end while                   // igual à mediana dos k elementos aleatoriamente escolhidos
+        idxPtrs[j+1] = pivotPtr;
+        (*copias) += 1;
+
+    } // end for
+    */
+
+    insertionSort(idxPtrs[0], k, comp, copias);
+
+    swapPtr(idxPtrs[k/2], right-1); // e colocar esse elemento na extrema direita do vetor
+    (*copias) += 1;
+
+//    cout << "\nidxPtrs = ";
+//    for(int i = 0; i < k; i++) {
+//        cout << *(idxPtrs[k]);
+//    }
+//    cout << endl << endl;
+
+
+    delete idxPtrs;                // ficando com um vetor particionavel pela função partitionIt acima
+    return *(right-1);
+
+//    int *kElements = new int[k];
+//    int i, j, aux, pivot;
+//
+//    for(i = 0; i < k; i++) {
+//        kElements[i] = *(left + randomInt(0, right-left));
+//    }
+//
+//    for(int i = 0; i < k; i++) {
+//        pivot = kElements[i];
+//        j = i-1;
 //        (*comp) += 1;
-//        while(j >= 0 && *(idxPtrs[j]) > pivot) {
-//            idxPtrs[j+1] = idxPtrs[j]; // Diferença em relação ao Insertion Sort
+//        while(j >= 0 && kElements[j] > pivot) {
+//            kElements[j+1] = kElements[j];
 //            (*copias) += 1;
-//            j--;                         // Desta maneira, podemos achar o endereço do elemento no vetor original
+//            j--;
 //            (*comp) += 1;
-//        } // end while                   // igual à mediana dos k elementos aleatoriamente escolhidos
-//        idxPtrs[j+1] = pivotPtr;
+//        } // end while
+//        kElements[j+1] = pivot;
 //        (*copias) += 1;
 //
 //    } // end for
 //
-//    swapPtr(idxPtrs[k/2], right-1); // e colocar esse elemento na extrema direita do vetor
-//    (*copias) += 1;
-//    delete idxPtrs;                // ficando com um vetor particionavel pela função partitionIt acima
-//    return *(right-1);
-
-    int *kElements = new int[k];
-    int i, j, aux, pivot;
-
-    for(i = 0; i < k; i++) {
-        kElements[i] = *(left + randomInt(0, right-left));
-    }
-
-    for(int i = 0; i < k; i++) {
-        pivot = kElements[i];
-        j = i-1;
-        (*comp) += 1;
-        while(j >= 0 && kElements[j] > pivot) {
-            kElements[j+1] = kElements[j];
-            (*copias) += 1;
-            j--;
-            (*comp) += 1;
-        } // end while
-        kElements[j+1] = pivot;
-        (*copias) += 1;
-
-    } // end for
-
-    aux = kElements[k/2];
-    delete kElements;
-    return aux;
+//    aux = kElements[k/2];
+//    delete kElements;
+//    return aux;
 
 } /// end medianOfK();
 
@@ -249,24 +260,137 @@ void quickSortDeputyId(GastoDeputado *leftDep, GastoDeputado *rightDep, int *com
 } /// end quickSortDeputyId();
 
 
-void quickSortMedian(int *left, int *right, int k, int *comp, int *copias) {
-    int sizeVec = right-left+1;
-    if(sizeVec <= 3) {                    // manual Sort if small,
-        manualSort(left, right, comp, copias);
+
+//void quickSortMedian(int *left, int *right, int k, int *comp, int *copias) {
+//    int sizeVec = right-left+1;
+//    if(sizeVec <= k) { // manual Sort if small,
+//        if(k == 3)
+//            manualSort(left, right, comp, copias);
+////        else if(k == 5)
+////            quickSort(left, right, comp, copias);
+//    }
+////    /*
+////    else if(k > sizeVec) {  // median of all elements if k > sizeVec
+////        int median = medianOfK(left, right, sizeVec, comp, copias); // median of sizeVec elements
+////        int *part = partitionItMedian(left, right, median, comp, copias);
+////        quickSortMedian(left, part-1, sizeVec, comp, copias);        // Sort left side
+////        quickSortMedian(part+1, right, sizeVec, comp, copias);       // Sort right side
+////    }*/
+////    else {                              // quickSortMedian if large
+////        int median = medianOfK(left, right, k, comp, copias);
+////        int *part = partitionItMedian(left, right, median, comp, copias);
+////        quickSortMedian(left, part-1, k, comp, copias);        // Sort left side
+////        quickSortMedian(part+1, right, k, comp, copias);       // Sort right side
+////    }
+//
+//    else {                              // size is 2 or larger
+//        int c = k;
+//        int sizeVec = right-left+1;
+//        if(c > sizeVec)
+//            c = sizeVec;
+//
+//        int pivot = medianOfK(left, right, c, comp, copias);             // rightmost item as pivot
+//        int *part = partitionItMedian(left, right, pivot, comp, copias);
+//        quickSortMedian(left, part-1, c, comp, copias);        // Sort left side
+//        quickSortMedian(part+1, right, c, comp, copias);       // Sort right side
+//    }
+//} /// end quickSortMedian();
+
+
+
+void quickSortMedian(int *left, int *right, int k, int *comp, int *copias) //(int vet[],int ini,int fim)
+{
+    if(right - left <= 0) {
+        return;
     }
-    else if(k > sizeVec) {  // median of all elements if k > sizeVec
-        int median = medianOfK(left, right, sizeVec, comp, copias); // median of sizeVec elements
-        int *part = partitionItMedian(left, right, median, comp, copias);
-        quickSortMedian(left, part-1, k, comp, copias);        // Sort left side
-        quickSortMedian(part+1, right, k, comp, copias);       // Sort right side
+
+    int pivot = 2;//pivoMediana(...);
+    int *iPtr, *jPtr;
+
+    iPtr = left;
+    jPtr = right;
+
+    while(iPtr < jPtr) {
+        (*comp) += 1;
+        while(iPtr < right && *iPtr < pivot) {
+            iPtr++;
+            (*comp) += 1;
+        }
+        (*comp) += 1;
+        while(jPtr > left && *jPtr > pivot) {
+            jPtr--;
+            (*comp) += 1;
+        }
+
+        if(iPtr < jPtr) {
+            swapPtr(iPtr, jPtr);
+            (*copias) += 1;
+        }
+
+        (*comp) += 1;
+        if(*iPtr == *jPtr) {
+            iPtr++;
+        }
     }
-    else {                              // quickSortMedian if large
-        int median = medianOfK(left, right, k, comp, copias);
-        int *part = partitionItMedian(left, right, median, comp, copias);
-        quickSortMedian(left, part-1, k, comp, copias);        // Sort left side
-        quickSortMedian(part+1, right, k, comp, copias);       // Sort right side
+
+    quickSortMedian(left, iPtr-1, k, comp, copias);
+    quickSortMedian()
+
+
+    if(fim > ini){
+        float pivo = pivoMediana(vet,ini,fim,getK());
+        int i=ini;
+        int j=fim;
+        int aux = 0;
+        while(i<j){
+            while(vet[i] < pivo && i < fim)i++;
+            while(vet[j] > pivo && j > ini)j--;
+            if(i < j){
+                aux = vet[i];
+                vet[i] = vet[j];
+                vet[j] = aux;
+            }
+            if(vet[i] == vet[j]){
+                i++;
+            }
+
+        }
+        quickMediana(vet,ini,i-1);
+        quickMediana(vet,i,fim);
     }
 } /// end quickSortMedian();
+
+int pivoMediana (int vet[], int ini, int fim, int k)
+{
+    float pivo=0;
+    int a;
+    //srand( (unsigned)time(NULL) );
+    for(int i=0; i<k; i++)
+    {
+        a = rand()%(fim-ini+1);
+        //cout << vet[a] << " ";
+        pivo += vet[a+ini];
+    }
+    //cout<<endl;
+    pivo = pivo/(float)k;
+    return pivo;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void quickSortInsertion(int *left, int *right, int m, int *comp, int *copias) {
