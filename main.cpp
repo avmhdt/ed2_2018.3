@@ -1,63 +1,6 @@
 #include "headers/libraries.h"
 
-//int main()
-//{
-//    int *i;
-//    int j[2] = {55, 60};
-//    i = &j[0];
-//
-//    cout << "j[1] = " << *i << endl;
-//    cout << "i = " << i << endl;
-//
-//    int *k = i+1;
-//
-//    cout << "j[2] = " << *i << endl;
-//    cout << "i = " << i << endl;
-//    cout << "K-i = " << k-i << endl;
-//    cout << " k = " << k << endl;
-//    cout << "k < i? " << bool(k > i) << endl;
-//
-//    int vec[] = {6,5,1, -37, 9, 6, 7, 1, 4, 3, 159, 354, 456, 123123, 3,2,4};
-//
-//    for(int i = 0; i < sizeof(vec)/sizeof(int); i++) {
-//        cout << vec[i] << " ";
-//    }; cout << endl;
-//
-//    ///
-//    //quickSort(vec, &vec[sizeof(vec)/sizeof(int)-1]);
-//    countingSort(vec, sizeof(vec)/sizeof(int));
-//    ///
-//
-//    for(int i = 0; i < sizeof(vec)/sizeof(int); i++) {
-//        cout << vec[i] << " ";
-//    }; cout << endl;
-//
-//    /*
-//    int v2[] = {6,5,7,2,4,3};
-//    int *vPtr = new int[6];
-//    for(int i = 0; i < 6; i++) {
-//        cin >> *(vPtr+i);
-//    }
-//
-//    cout << "*****************" << endl;
-//    int *vecAux = new int(*vPtr);
-//    for(int i = 0; i < 6; i++) {
-//        cout << vPtr[i] << " ";
-//    }
-//    */
-//
-//    int s = 6;
-//    int *arr = new int[s]();
-//    printVec(arr, 6);
-//
-//
-//
-//
-//
-//
-//    return 0;
-//}
-
+#define CENARIO 2
 
 ///********************************
 /// PARTE 1: ANÁLISE DOS ALGORITMOS
@@ -74,8 +17,8 @@ int main() {
         return 0;
     }
 
-    int N, nLines, i, j, k, lineCount, randLine, comp, trocas;
-    int *conjuntoIds;
+    int N, nLines, i, j, k, lineCount, randLine;//, comp, copias;
+    int *conjuntoIds, *conjuntoIdsAux, *comp, *copias;
     string line, tableCell, filename;
     //char aspas;
     GastoDeputado *allDeputados, *conjuntoDeputados;
@@ -87,6 +30,9 @@ int main() {
     int *NValues, *seedVec;
     NValues = new int[N];
     seedVec = new int[5];
+
+    comp = new int();
+    copias = new int();
 
     for(j = 0; j < N; j++) {
         entrada >> NValues[j];
@@ -100,6 +46,10 @@ int main() {
 
     if(!deputados.is_open()) {
         cout << "Sem dataset." << endl;
+        delete NValues;
+        delete seedVec;
+        delete comp;
+        delete copias;
         return 0;
     }
 
@@ -237,7 +187,7 @@ int main() {
     }
 
     TIME tempoOrd;
-    int comparacoes, trocas;
+    int comparacoes, copias;
 
     // 1. Gerar 5 sementes (**)       --done
     // 2. Para cada semente, criar um arquivo de saida. srand(seedVec[k])    --done
@@ -245,9 +195,9 @@ int main() {
     //      a partir da tabela dos deputados. Isso será feito da seguinte maneira:
     //  3.1. Para j = 1:NValues[i], conjunto[j] = deputados[linha randNum(1, numero de linhas da tabela)]. conjunto é um conjunto da classe GastoDeputado, de tamanho NValues[i]
     //  3.2. fim para
-    // 4. Ordena o conjunto, com cada algoritmo pedido, retornando o conjunto ordenado, o tempo gasto, o numero de comparacoes, e o numero de trocas.
+    // 4. Ordena o conjunto, com cada algoritmo pedido, retornando o conjunto ordenado, o tempo gasto, o numero de comparacoes, e o numero de copias.
     // 5. Contabiliza as estatisicas de desempenho
-    // 6. Escreve no arquivo de saida: N = NValues[i], algoritmo 1: tempo, comparacoes, trocas; algoritmo 2: tempo, comparacoes, trocas; ...
+    // 6. Escreve no arquivo de saida: N = NValues[i], algoritmo 1: tempo, comparacoes, copias; algoritmo 2: tempo, comparacoes, copias; ...
     // 7. fim para cada valor de N
     // 8. fim para cada seed
 
@@ -272,19 +222,23 @@ int main() {
     }
 
     for(i = 0; i < 5; i++) {
-        filename = "saida_seed_" + std::to_string(seedVec[i]) + ".txt";
+
+        filename = "./Parte 1/Cenario " + std::to_string(CENARIO) + "/saida_seed_" + std::to_string(seedVec[i]) + ".txt";
+
         saida.open(filename, ios::out | ios::binary); //arquivo de saída da seed
 
-        saida << "/* N\n" << " * Ordenado Deputados(0/1)\n" << " * Tempo Deputados\n" << " * Comparações Deputados\n" << " * Trocas Deputados\n";
-        saida << " * Ordenado Inteiros(0/1)\n" << " * Tempo Inteiros\n" << " * Comparações Inteiros\n" << " * Trocas Inteiros\n" << "*/\n";
+        //saida << "/* N\n" << " * Ordenado Deputados(0/1)\n" << " * Tempo Deputados\n" << " * Comparações Deputados\n" << " * copias Deputados\n";
+        //saida << " * Ordenado Inteiros(0/1)\n" << " * Tempo Inteiros\n" << " * Comparações Inteiros\n" << " * copias Inteiros\n" << "*/\n" << endl;
 
         srand(seedVec[i]); //i-ésima seed, para o i-ésimo conjunto, i = 1,...,5
         for(j = 0; j < N; j++) { // para cada valor de N
 
-            saida << NValues[j] << endl;
+            saida << "*************\n" << NValues[j] << endl;
 
             conjuntoDeputados = new GastoDeputado[NValues[j]];
             conjuntoIds = new int[NValues[j]];
+            conjuntoIdsAux = new int[NValues[j]];
+
 
             for(k = 0; k < NValues[j]; k++) { // para 1:Valor atual de N, adicionar um deputado aleatorio ao conjunto
                 randLine = randomInt(0, nLines); // gera numero aleatorio randLin
@@ -296,41 +250,206 @@ int main() {
                 cout << conjuntoDeputados[k].getDeputyId() << "   conjuntoDeputados pre" << endl;
             }
 
-            for(k = 0; k < NValues[j]; k++) {
-                cout << conjuntoIds[k] << "   conjuntoIds pre" << endl;
-            }
-
             // ordena o conjunto
 
-            comp = 0; trocas = 0; //numero de comparacoes entre chaves, e de trocas de chaves
+            switch(CENARIO) {
 
-            startTime = clock();
+                case 1:
 
-            quickSortDeputyId(&(conjuntoDeputados[0]), &(conjuntoDeputados[NValues[j]-1]));
+                    for(k = 0; k < NValues[j]; k++) {
+                        conjuntoIdsAux[k] = conjuntoIds[k];
+                    }
 
-            endTime = clock();
-            cpuTime = (double)(endTime - startTime)/(CLOCKS_PER_SEC);
+                    *comp = 0; *copias = 0; //numero de comparacoes entre chaves, e de copias de chaves
 
-            //cout << "\n\n cpuTimeDeputados = " << cpuTime << "\n\n" << endl;
-            saida << ordenado(&(conjuntoDeputados[0]), NValues[j]) << endl;
-            saida << cpuTime << endl;
-            saida << comp << endl;
-            saida << trocas << endl;
+                    startTime = clock();
 
-            comp = 0; trocas = 0;
+                    cout << "\n\quickSort deputados\n" << endl;
+                    quickSortDeputyId(&(conjuntoDeputados[0]), &(conjuntoDeputados[NValues[j]-1]), comp, copias);
 
-            startTime = clock();
+                    endTime = clock();
+                    cpuTime = (double)(endTime - startTime)/(CLOCKS_PER_SEC);
 
-            quickSort(&(conjuntoIds[0]), &(conjuntoIds[NValues[j]-1]));
+                    //cout << "\n\n cpuTimeDeputados = " << cpuTime << "\n\n" << endl;
+                    saida << ordenado(&(conjuntoDeputados[0]), NValues[j]) << endl;
+                    saida << cpuTime << endl;
+                    saida << *comp << endl;
+                    saida << *copias << endl;
 
-            endTime = clock();
-            cpuTime = (double)(endTime - startTime)/(CLOCKS_PER_SEC);
+                    for(k = 0; k < NValues[j]; k++) {
+                        cout << conjuntoIds[k] << "   conjuntoIds pre" << endl;
+                    }
 
-            //cout << "\n\n cpuTimeInteiros = " << cpuTime << "\n\n" << endl;
-            saida << ordenado(&(conjuntoIds[0]), NValues[j]) << endl;
-            saida << cpuTime << endl;
-            saida << comp << endl;
-            saida << trocas << endl;
+                    *comp = 0; *copias = 0;
+
+                    startTime = clock();
+
+                    cout << "\n\quickSort inteiros\n" << endl;
+                    quickSort(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), comp, copias);
+
+                    endTime = clock();
+                    cpuTime = (double)(endTime - startTime)/(CLOCKS_PER_SEC);
+
+                    //cout << "\n\n cpuTimeInteiros = " << cpuTime << "\n\n" << endl;
+                    saida << ordenado(&(conjuntoIdsAux[0]), NValues[j]) << endl;
+                    saida << cpuTime << endl;
+                    saida << *comp << endl;
+                    saida << *copias << endl;
+                    saida << "\n" << endl;
+
+                    for(k = 0; k < NValues[j]; k++) {
+                        cout << conjuntoIds[k] << "   conjuntoIds pre" << endl;
+                    }
+
+                    break;
+
+
+                case 2:
+
+                    for(int l = 0; l < 5; l++) {
+                        for(k = 0; k < NValues[j]; k++) {
+                            conjuntoIdsAux[k] = conjuntoIds[k];
+                        }
+                        switch(l) {
+                            case 0:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\quickSort\n" << endl;
+                                quickSort(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 1:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\quickSortMediana3\n" << endl;
+                                quickSortMedian(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), 3, comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 2:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\quickSortMediana5\n" << endl;
+                                quickSortMedian(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), 5, comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 3:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\quickSortInsertion m = 10\n" << endl;
+                                quickSortInsertion(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), 10, comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 4:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\quickSortInsertion m = 100\n" << endl;
+                                quickSortInsertion(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), 100, comp, copias);
+
+                                endTime = clock();
+                                break;
+                        }
+
+                        cpuTime = (double)(endTime - startTime)/(CLOCKS_PER_SEC);
+
+                        saida << ordenado(&(conjuntoIdsAux[0]), NValues[j]) << endl;
+                        saida << cpuTime << endl;
+                        saida << *comp << endl;
+                        saida << *copias << endl;
+                        saida << "\n" << endl;
+                    }
+
+                    break;
+
+
+                case 3:
+
+                    for(int l = 0; l < 5; l++) {
+                        for(k = 0; k < NValues[j]; k++) {
+                            conjuntoIdsAux[k] = conjuntoIds[k];
+                        }
+                        switch(l) {
+                            case 0:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\quickSort\n" << endl;
+                                quickSort(&(conjuntoIdsAux[0]), &(conjuntoIdsAux[NValues[j]-1]), comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 1:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\insertionSort\n" << endl;
+                                insertionSort(&(conjuntoIdsAux[0]), NValues[j], comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 2:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\mergeSort\n" << endl;
+                                mergeSort(&(conjuntoIdsAux[0]), 0, NValues[j]-1, comp, copias);
+
+                                endTime = clock();
+                                break;
+
+                            case 3:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\heapSort\n" << endl;
+                                //heapSort
+
+                                endTime = clock();
+                                break;
+
+                            case 4:
+                                *comp = 0; *copias = 0;
+                                startTime = clock();
+
+                                cout << "\n\countingSort\n" << endl;
+                                countingSort(&(conjuntoIdsAux[0]), NValues[j], comp, copias);
+
+                                endTime = clock();
+                                break;
+                        }
+
+                        cpuTime = (double)(endTime - startTime)/(CLOCKS_PER_SEC);
+
+                        saida << ordenado(&(conjuntoIdsAux[0]), NValues[j]) << endl;
+                        saida << cpuTime << endl;
+                        saida << *comp << endl;
+                        saida << *copias << endl;
+                        saida << "\n" << endl;
+                    }
+
+                    break;
+
+
+                case 4:
+                    /// ALGORITMOS DE PESQUISA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    break;
+            }
+
+
 
 
             /*
@@ -356,6 +475,7 @@ int main() {
             // Valor de N atual (NValues[j]), numero de comparacoes, numero de copias e tempo de execucao
             // coloca em saida.txt
             delete conjuntoIds;
+            delete conjuntoIdsAux;
         }
 
 
@@ -364,6 +484,8 @@ int main() {
 
     delete NValues;
     delete seedVec;
+    delete comp;
+    delete copias;
 
     return 0;
 }

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1538660936 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/main.cpp
+1538785004 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/main.cpp
 	"headers/libraries.h"
 
 1538234248 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/libraries.h
@@ -16,10 +16,10 @@
 	"util.h"
 	"deputado.h"
 
-1538317898 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/sorting.h
+1538691753 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/sorting.h
 	"deputado.h"
 
-1538663483 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/sorting.cpp
+1538785742 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/sorting.cpp
 	"../headers/libraries.h"
 
 1538588073 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/deputado.cpp
