@@ -23,6 +23,16 @@ int minVec(int *vec, int vecSize) {
     return m;
 } /// end minVec();
 
+double minVec(double *vec, int vecSize) {
+    double m = vec[0];
+    for(int i=1; i < vecSize; i++) {
+        if(vec[i] < m)
+            m = vec[i];
+    }
+    return m;
+} /// end minVec();
+
+
 
 int maxVec(int *vec, int vecSize) {
     int m = vec[0];
