@@ -1,0 +1,183 @@
+********Resultados Cenário 2********
+
+
+N = 1000
+
+Algoritmo: QuickSort Insertion m = 10
+Tempo médio de ordenação = 0.000138s
+Número médio de comparações de chaves = 11557
+Número médio de cópias de registros = 3611
+
+Algoritmo: Insertion Sort
+Tempo médio de ordenação = 0.0012968s
+Número médio de comparações de chaves = 249573
+Número médio de cópias de registros = 249573
+
+Algoritmo: Merge Sort
+Tempo médio de ordenação = 0.0003048s
+Número médio de comparações de chaves = 8707
+Número médio de cópias de registros = 9976
+
+Algoritmo: Heap Sort
+Tempo médio de ordenação = 0.0048994s
+Número médio de comparações de chaves = 499500
+Número médio de cópias de registros = 160175
+
+Algoritmo: Counting Sort
+Tempo médio de ordenação = 6.28e-05s
+Número médio de comparações de chaves = 0
+Número médio de cópias de registros = 2000
+
+Algoritmo mais rápido: CountingSort
+
+***********************************
+N = 5000
+
+Algoritmo: QuickSort Insertion m = 10
+Tempo médio de ordenação = 0.0006326s
+Número médio de comparações de chaves = 71250
+Número médio de cópias de registros = 19332
+
+Algoritmo: Insertion Sort
+Tempo médio de ordenação = 0.0260816s
+Número médio de comparações de chaves = 6260792
+Número médio de cópias de registros = 6260792
+
+Algoritmo: Merge Sort
+Tempo médio de ordenação = 0.0014796s
+Número médio de comparações de chaves = 55224
+Número médio de cópias de registros = 61808
+
+Algoritmo: Heap Sort
+Tempo médio de ordenação = 0.10536s
+Número médio de comparações de chaves = 12497500
+Número médio de cópias de registros = 2636603
+
+Algoritmo: Counting Sort
+Tempo médio de ordenação = 0.0001498s
+Número médio de comparações de chaves = 0
+Número médio de cópias de registros = 10000
+
+Algoritmo mais rápido: CountingSort
+
+***********************************
+N = 10000
+
+Algoritmo: QuickSort Insertion m = 10
+Tempo médio de ordenação = 0.0012044s
+Número médio de comparações de chaves = 147453
+Número médio de cópias de registros = 40278
+
+Algoritmo: Insertion Sort
+Tempo médio de ordenação = 0.0846802s
+Número médio de comparações de chaves = 24969571
+Número médio de cópias de registros = 24969571
+
+Algoritmo: Merge Sort
+Tempo médio de ordenação = 0.0025522s
+Número médio de comparações de chaves = 120445
+Número médio de cópias de registros = 133616
+
+Algoritmo: Heap Sort
+Tempo médio de ordenação = 0.354556s
+Número médio de comparações de chaves = 49995000
+Número médio de cópias de registros = 7591515
+
+Algoritmo: Counting Sort
+Tempo médio de ordenação = 0.000224s
+Número médio de comparações de chaves = 0
+Número médio de cópias de registros = 20000
+
+Algoritmo mais rápido: CountingSort
+
+***********************************
+N = 50000
+
+Algoritmo: QuickSort Insertion m = 10
+Tempo médio de ordenação = 0.0057382s
+Número médio de comparações de chaves = 835347
+Número médio de cópias de registros = 235165
+
+Algoritmo: Insertion Sort
+Tempo médio de ordenação = 2.02259s
+Número médio de comparações de chaves = 623790327
+Número médio de cópias de registros = 623790327
+
+Algoritmo: Merge Sort
+Tempo médio de ordenação = 0.0120892s
+Número médio de comparações de chaves = 718213
+Número médio de cópias de registros = 784464
+
+Algoritmo: Heap Sort
+Tempo médio de ordenação = 7.35402s
+Número médio de comparações de chaves = 390981540
+Número médio de cópias de registros = 70050742
+
+Algoritmo: Counting Sort
+Tempo médio de ordenação = 0.0009324s
+Número médio de comparações de chaves = 0
+Número médio de cópias de registros = 100000
+
+Algoritmo mais rápido: CountingSort
+
+***********************************
+N = 100000
+
+Algoritmo: QuickSort Insertion m = 10
+Tempo médio de ordenação = 0.01226s
+Número médio de comparações de chaves = 1756909
+Número médio de cópias de registros = 511824
+
+Algoritmo: Insertion Sort
+Tempo médio de ordenação = 8.18766s
+Número médio de comparações de chaves = 776874100
+Número médio de cópias de registros = 776874100
+
+Algoritmo: Merge Sort
+Tempo médio de ordenação = 0.0246514s
+Número médio de comparações de chaves = 1536325
+Número médio de cópias de registros = 1668928
+
+Algoritmo: Heap Sort
+Tempo médio de ordenação = 27.5935s
+Número médio de comparações de chaves = 704982704
+Número médio de cópias de registros = 171034064
+
+Algoritmo: Counting Sort
+Tempo médio de ordenação = 0.0019212s
+Número médio de comparações de chaves = 0
+Número médio de cópias de registros = 200000
+
+Algoritmo mais rápido: CountingSort
+
+***********************************
+N = 500000
+
+Algoritmo: QuickSort Insertion m = 10
+Tempo médio de ordenação = 0.0590046s
+Número médio de comparações de chaves = 10106203
+Número médio de cópias de registros = 3097724
+
+Algoritmo: Insertion Sort
+Tempo médio de ordenação = 203.068s
+Número médio de comparações de chaves = 561752736
+Número médio de cópias de registros = 561752736
+
+Algoritmo: Merge Sort
+Tempo médio de ordenação = 0.129775s
+Número médio de comparações de chaves = 8837163
+Número médio de cópias de registros = 9475712
+
+Algoritmo: Heap Sort
+Tempo médio de ordenação = 645.56s
+Número médio de comparações de chaves = 445698416
+Número médio de cópias de registros = 325645141
+
+Algoritmo: Counting Sort
+Tempo médio de ordenação = 0.0094882s
+Número médio de comparações de chaves = 0
+Número médio de cópias de registros = 1000000
+
+Algoritmo mais rápido: CountingSort
+
+***********************************
