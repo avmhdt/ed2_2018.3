@@ -23,6 +23,17 @@ int minVec(int *vec, int vecSize) {
     return m;
 } /// end minVec();
 
+
+int minVecPos(int *vec, int vecSize) {
+    int m = 0;
+    for(int i=1; i < vecSize; i++) {
+        if(vec[i] < vec[m])
+            m = i;
+    }
+    return m;
+} /// end minVecPos();
+
+
 double minVec(double *vec, int vecSize) {
     double m = vec[0];
     for(int i=1; i < vecSize; i++) {

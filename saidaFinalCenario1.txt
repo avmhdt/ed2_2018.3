@@ -3,91 +3,91 @@
 
 N = 1000
 
-Algoritmo: QuickSort para Inteiros
-Tempo médio de ordenação = 0.0056664s
+Algoritmo: QuickSort para Registros de Gastos de Deputados
+Tempo médio de ordenação = 0.0045992s
 Número médio de comparações de chaves = 11261
 Número médio de cópias de registros = 6652
 
-Algoritmo: QuickSort para Registros de Gastos de Deputados
-Tempo médio de ordenação = 0.0001218s
+Algoritmo: QuickSort para Inteiros
+Tempo médio de ordenação = 0.000121s
 Número médio de comparações de chaves = 11959
 Número médio de cópias de registros = 2464
 
-Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados
+Algoritmo mais rápido: QuickSort para Inteiros
 
 ***********************************
 N = 5000
 
-Algoritmo: QuickSort para Inteiros
-Tempo médio de ordenação = 0.0324112s
+Algoritmo: QuickSort para Registros de Gastos de Deputados
+Tempo médio de ordenação = 0.0312778s
 Número médio de comparações de chaves = 79790
 Número médio de cópias de registros = 52054
 
-Algoritmo: QuickSort para Registros de Gastos de Deputados
-Tempo médio de ordenação = 0.000612s
+Algoritmo: QuickSort para Inteiros
+Tempo médio de ordenação = 0.000584s
 Número médio de comparações de chaves = 74228
 Número médio de cópias de registros = 16120
 
-Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados
+Algoritmo mais rápido: QuickSort para Inteiros
 
 ***********************************
 N = 10000
 
-Algoritmo: QuickSort para Inteiros
-Tempo médio de ordenação = 0.081429s
+Algoritmo: QuickSort para Registros de Gastos de Deputados
+Tempo médio de ordenação = 0.0761994s
 Número médio de comparações de chaves = 197640
 Número médio de cópias de registros = 147580
 
-Algoritmo: QuickSort para Registros de Gastos de Deputados
-Tempo médio de ordenação = 0.0012832s
+Algoritmo: QuickSort para Inteiros
+Tempo médio de ordenação = 0.0012148s
 Número médio de comparações de chaves = 154858
 Número médio de cópias de registros = 36380
 
-Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados
+Algoritmo mais rápido: QuickSort para Inteiros
 
 ***********************************
 N = 50000
 
-Algoritmo: QuickSort para Inteiros
-Tempo médio de ordenação = 0.991236s
+Algoritmo: QuickSort para Registros de Gastos de Deputados
+Tempo médio de ordenação = 1.02981s
 Número médio de comparações de chaves = 2551915
 Número médio de cópias de registros = 2289060
 
-Algoritmo: QuickSort para Registros de Gastos de Deputados
-Tempo médio de ordenação = 0.0070532s
+Algoritmo: QuickSort para Inteiros
+Tempo médio de ordenação = 0.0064264s
 Número médio de comparações de chaves = 884967
 Número médio de cópias de registros = 234282
 
-Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados
+Algoritmo mais rápido: QuickSort para Inteiros
 
 ***********************************
 N = 100000
 
-Algoritmo: QuickSort para Inteiros
-Tempo médio de ordenação = 3.54128s
+Algoritmo: QuickSort para Registros de Gastos de Deputados
+Tempo médio de ordenação = 3.64688s
 Número médio de comparações de chaves = 8899232
 Número médio de cópias de registros = 8360755
 
-Algoritmo: QuickSort para Registros de Gastos de Deputados
-Tempo médio de ordenação = 0.0132982s
+Algoritmo: QuickSort para Inteiros
+Tempo médio de ordenação = 0.012808s
 Número médio de comparações de chaves = 1860703
 Número médio de cópias de registros = 516125
 
-Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados
+Algoritmo mais rápido: QuickSort para Inteiros
 
 ***********************************
 N = 500000
 
-Algoritmo: QuickSort para Inteiros
-Tempo médio de ordenação = 81.0648s
+Algoritmo: QuickSort para Registros de Gastos de Deputados
+Tempo médio de ordenação = 83.8881s
 Número médio de comparações de chaves = 197527310
 Número médio de cópias de registros = 194814933
 
-Algoritmo: QuickSort para Registros de Gastos de Deputados
-Tempo médio de ordenação = 0.0649264s
+Algoritmo: QuickSort para Inteiros
+Tempo médio de ordenação = 0.0640156s
 Número médio de comparações de chaves = 10642638
 Número médio de cópias de registros = 3143521
 
-Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados
+Algoritmo mais rápido: QuickSort para Inteiros
 
 ***********************************

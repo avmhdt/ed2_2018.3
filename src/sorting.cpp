@@ -298,26 +298,37 @@ void quickSortMedian(int *left, int *right, int k, unsigned int *comp, unsigned 
 
 int medianOfK(int *left, int *right, int k, unsigned int *comp, unsigned int *copias) {//(int vet[], int ini, int fim, int k) {
 
-//    int *kElements = new int[k];
-//    int aux;
-//
-//    //srand((unsigned)time(NULL));
-//    for(int i = 0; i < k; i++) {
-//        aux = rand()%(right-left+1);
-//        kElements[i] = left[aux];
-//    }
-//
-//    insertionSort(kElements, k, comp, copias);
-//
-//    aux = kElements[k/2];
-//    delete [] kElements;
-//    return aux;
+    int *kElements = new int[k];
+    int *output = new int[k];
+    int aux, i, m;
 
-    int i, pivot = 0;
+    //srand((unsigned)time(NULL));
     for(i = 0; i < k; i++) {
-        pivot += *(left + randomInt(0, right-left));
+        aux = rand()%(right-left+1);
+        kElements[i] = left[aux];
     }
-    return pivot/k;
+
+    for(i = 0; i < k; i++) {
+        output[i] = kElements[i]; //vetor auxiliar recebe o kElements
+    }
+
+    for(i = 0; i < k; i++) { // ordena o output
+        m = minVecPos(&(output[i]), k-i);
+        aux = output[m];
+        output[i] = output[m];
+        output[m] = aux;
+    }
+
+    aux = output[k/2]; //seleciona a mediana
+    delete [] kElements;
+    delete [] output;
+    return aux;
+
+//    int i, pivot = 0;
+//    for(i = 0; i < k; i++) {
+//        pivot += *(left + randomInt(0, right-left));
+//    }
+//    return pivot/k;
 
 } /// end medianOfK();
 

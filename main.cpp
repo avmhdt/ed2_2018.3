@@ -1,6 +1,6 @@
 #include "headers/libraries.h"
 
-#define CENARIO 3
+#define CENARIO 4
 
 ///********************************
 /// PARTE 1: ANÁLISE DOS ALGORITMOS
@@ -17,7 +17,7 @@ int main() {
         return 0;
     }
 
-    int N, nLines, i, j, k, lineCount, randLine;//, comp, copias;
+    int N, nLines, i, j, k, v, lineCount, randLine;//, comp, copias;
     //int *conjuntoIds, *conjuntoIdsAux,
     unsigned int *comp, *copias;
     string line, tableCell, filename;
@@ -51,8 +51,8 @@ int main() {
         cout << "Sem dataset." << endl;
         delete [] NValues;
         delete [] seedVec;
-        delete comp;
-        delete copias;
+        delete [] comp;
+        delete [] copias;
         return 0;
     }
 
@@ -506,7 +506,6 @@ int main() {
                                 break;
                         }
 
-
                         saida << ordenado(&(conjuntoIdsAux[0]), NValues[j]) << endl;
                         saida << cpuTime << endl;
                         saida << *comp << endl;
@@ -517,9 +516,80 @@ int main() {
                     break;
 
 
-                //case 4:
-                //    /// ALGORITMOS DE PESQUISA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //    break;
+                case 4:
+                    /// ALGORITMOS DE PESQUISA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    for(int l = 0; l < 5; l++) {
+                        for(k = 0; k < NValues[j]; k++) {
+                            conjuntoIdsAux[k] = conjuntoIds[k];
+                        }
+                        switch(l) {
+                            case 0:
+                            {
+                                cout << "\n\SondagemLinear\n" << endl;
+                                Sondagem_Linear obj1(NValues[j]);
+                                for(v=0;v<NValues[j];v++)
+                                {
+                                    obj1.insere_sond_linear(conjuntoIdsAux[v]);
+                                }
+                                comp1[i][j] = obj1.comparacoes;
+                                break;
+                            }
+                            case 1:
+                            {
+                                cout << "\n\duploHashing\n" << endl;
+                                Re_hashing obj2(NValues[j]);
+                                for(v=0;v<NValues[j];v++)
+                                {
+                                    obj2.inserir_rehashing(conjuntoIdsAux[v]);
+                                }
+
+                                comp2[i][j] = obj2.comparacoes;
+                                break;
+                            }
+                            case 2:
+                            {
+                                cout << "\n\sondagemQuadratica\n" << endl;
+                                Sond_quad obj3(NValues[j]);
+                                for(v=0;v<NValues[j];v++)
+                                {
+                                    obj3.inserir_func_quadratica(conjuntoIdsAux[v]);
+                                }
+
+                                comp3[i][j] = obj3.comparacoes;
+                                break;
+                            }
+                            case 3:
+                            {
+                                cout << "\n\hashSeparado\n" << endl;
+                                Hash_separa obj4(NValues[j]);
+                                for(v=0;v<NValues[j];v++)
+                                {
+                                    obj4.insere_hash_separado(conjuntoIdsAux[v]);
+                                }
+
+                                comp4[i][j] = obj4.comparacoes;
+                                break;
+                            }
+                            case 4:
+                            {
+                                *comp = 0;
+                                cout << "\n\hashCoalescido\n" << endl;
+                                Hash_coalesc obj5(NValues[j]);
+                                for(v=0;v<NValues[j];v++)
+                                {
+                                    obj5.insere_hashCoalescido(conjuntoIdsAux[v]);
+                                }
+
+                                comp5[i][j] = obj5.comparacoes;
+                                break;
+                            }
+                        }
+
+                        saida << *comp << endl;
+                        saida << "\n" << endl;
+                    }
+
+                    break;
             }
 
             /*for(k = 0; k < NValues[j]; k++) {
@@ -528,6 +598,7 @@ int main() {
 
             // Valor de N atual (NValues[j]), numero de comparacoes, numero de copias e tempo de execucao
             // coloca em saida.txt
+            delete [] conjuntoDeputados;
             delete [] conjuntoIds;
             delete [] conjuntoIdsAux;
         }
@@ -543,7 +614,8 @@ int main() {
             saidaCenario1 << "********Resultados Cenário 1********\n\n" << endl;
             for(j = 0; j < N; j++) {
                 saidaCenario1 << "N = " << NValues[j] << "\n"<< endl;
-                saidaCenario1 << "Algoritmo: QuickSort para Inteiros" << endl;
+
+                saidaCenario1 << "Algoritmo: QuickSort para Registros de Gastos de Deputados" << endl;
 
                 auxTime[0] = 0;
                 auxComp[0] = 0;
@@ -562,7 +634,8 @@ int main() {
                 saidaCenario1 << "Número médio de cópias de registros = " << auxCopias[0] << "\n" << endl;
 
                 ///*******************************
-                saidaCenario1 << "Algoritmo: QuickSort para Registros de Gastos de Deputados" << endl;
+
+                saidaCenario1 << "Algoritmo: QuickSort para Inteiros" << endl;
 
                 auxTime[1] = 0;
                 auxComp[1] = 0;
@@ -580,7 +653,7 @@ int main() {
                 saidaCenario1 << "Número médio de comparações de chaves = " << auxComp[1] << endl;
                 saidaCenario1 << "Número médio de cópias de registros = " << auxCopias[1] << "\n" << endl;
 
-                if(auxTime[0] < auxTime[1])
+                if(auxTime[1] < auxTime[0])
                     saidaCenario1 << "Algoritmo mais rápido: QuickSort para Inteiros\n" << endl;
                 else saidaCenario1 << "Algoritmo mais rápido: QuickSort para Registros de Gastos de Deputados\n" << endl;
 
@@ -832,14 +905,100 @@ int main() {
 
         case 4:
             ///SAIDA FINAL (medias) DOS ALGORITMOS DE PESQUISA
+            saidaCenario4.open("saidaFinalCenario4.txt", ios::out);
+            saidaCenario4 << "********Resultados Cenário 4********\n\n" << endl;
+
+            for(j = 0; j < N; j++) {
+
+                saidaCenario4 << "N = " << NValues[j] << "\n" << endl;
+
+                saidaCenario4 << "Algoritmo: Sondagem linear" << endl;
+
+                auxComp[0] = 0;
+                for(i = 0; i < 5; i++) {
+                    auxComp[0] += comp1[i][j];
+                }
+                auxComp[0] = auxComp[0]/5;
+
+                saidaCenario4 << "Número médio de comparações de chaves = " << auxComp[0] << endl;
+                saidaCenario4 << "Número médio de gasto de memoria = " << "Calcular" << "\n" << endl;
+
+                ///*******************************
+                saidaCenario4 << "Algoritmo: Duplo hashing" << endl;
+
+                auxComp[1] = 0;
+                for(i = 0; i < 5; i++) {
+                    auxComp[1] += comp2[i][j];
+                }
+                auxComp[1] = auxComp[1]/5;
+
+                saidaCenario4 << "Número médio de comparações de chaves = " << auxComp[1] << endl;
+                saidaCenario4 << "Número médio de gasto de memoria = " << "Calcular" << "\n" << endl;
+
+                ///*******************************
+                saidaCenario4 << "Algoritmo: Sondagem quadratica" << endl;
+
+                auxComp[2] = 0;
+                for(i = 0; i < 5; i++) {
+                    auxComp[2] += comp3[i][j];
+                }
+                auxComp[2] = auxComp[2]/5;
+
+                saidaCenario4 << "Número médio de comparações de chaves = " << auxComp[2] << endl;
+                saidaCenario4 << "Número médio de gasto de memoria = " << "Calcular" << "\n" << endl;
+
+                ///*******************************
+                saidaCenario4 << "Algoritmo: Encadeamento separado" << endl;
+
+                auxComp[3] = 0;
+                for(i = 0; i < 5; i++) {
+                    auxComp[3] += comp4[i][j];
+                }
+                auxComp[3] = auxComp[3]/5;
+
+                saidaCenario4 << "Número médio de comparações de chaves = " << auxComp[3] << endl;
+                saidaCenario4 << "Número médio de gasto de memoria = " << "Calcular" << "\n" << endl;
+
+                ///*******************************
+
+                saidaCenario4 << "Encadeamento coalescido" << endl;
+
+                auxComp[4] = 0;
+                for(i = 0; i < 5; i++) {
+                    auxComp[4] += comp5[i][j];
+                }
+                auxComp[4] = auxComp[4]/5;
+
+                saidaCenario4 << "Número médio de comparações de chaves = " << auxComp[4] << endl;
+                saidaCenario4 << "Número médio de gasto de memoria = " << "Calcular" << "\n" << endl;
+
+                ///*******************************
+                int d;
+                for(d = 0; d < 5; d++) {
+                    if(auxTime[d] == minTime)
+                        break;
+                }
+                switch(d) {
+                    case 0: saidaCenario4 << "Algoritmo com menos comparacoes: Sondagem linear\n" << endl; break;
+                    case 1: saidaCenario4 << "Algoritmo com menos comparacoes: Duplo hashing\n" << endl; break;
+                    case 2: saidaCenario4 << "Algoritmo com menos comparacoes: Hashing quadratico\n" << endl; break;
+                    case 3: saidaCenario4 << "Algoritmo com menos comparacoes: Encademanto separado\n" << endl; break;
+                    case 4: saidaCenario4 << "Algoritmo com menos comparacoes: Encademanto coalescido\n" << endl; break;
+                }
+
+                saidaCenario4 << "***********************************" << endl;
+
+            }
+
+            saidaCenario4.close();
             break;
     }
 
 
     delete [] NValues;
     delete [] seedVec;
-    delete comp;
-    delete copias;
+    delete [] comp;
+    delete [] copias;
 
     return 0;
 }

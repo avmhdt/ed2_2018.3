@@ -7,6 +7,7 @@ int randomInt(int from, int to);
 void swapPtr(int *a, int *b);
 void printVec(int *vec, int vecSize);
 int minVec(int *vec, int vecSize);
+int minVecPos(int *vec, int vecSize);
 double minVec(double *vec, int vecSize);
 int maxVec(int *vec, int vecSize);
 void swapPtr(int *a, int *b);

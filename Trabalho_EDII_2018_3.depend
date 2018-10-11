@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1538888310 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/main.cpp
+1539218820 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/main.cpp
 	"headers/libraries.h"
 
-1538234248 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/libraries.h
+1539217298 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/libraries.h
 	<iostream>
 	<string>
 	<cmath>
@@ -15,21 +15,78 @@
 	"sorting.h"
 	"util.h"
 	"deputado.h"
+	"../include/Hash_coalesc.h"
+	"../include/Hash_separa.h"
+	"../include/Re_hashing.h"
+	"../include/Sondagem_Linear.h"
+	"../include/Sond_quad.h"
 
 1538919149 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/sorting.h
 	"deputado.h"
 
-1538919179 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/sorting.cpp
+1538945265 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/sorting.cpp
 	"../headers/libraries.h"
 
 1538588073 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/deputado.cpp
 	"../headers/libraries.h"
 
-1538878961 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/util.h
+1538945014 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/util.h
 	"deputado.h"
 
-1538878952 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/util.cpp
+1538944986 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/util.cpp
 	"../headers/libraries.h"
 
 1537486851 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/headers/deputado.h
+
+1539199966 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/Hash_coalesc.h
+	"ponteiro.h"
+
+1539199964 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/ponteiro.h
+
+1539199968 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/Hash_separa.h
+	"Lista_encadeada.h"
+
+1539199966 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/Lista_encadeada.h
+	"Lista_encadeada.h"
+	"No.h"
+
+1539199966 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/No.h
+
+1539199968 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/Re_hashing.h
+
+1539199968 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/Sondagem_Linear.h
+
+1539199966 /home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/include/Sond_quad.h
+
+1539218380 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/Hash_coalesc.cpp
+	<iostream>
+	"../headers/libraries.h"
+
+1539218386 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/Hash_separa.cpp
+	<iostream>
+	"../headers/libraries.h"
+
+1539218390 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/Lista_encadeada.cpp
+	<iostream>
+	"../headers/libraries.h"
+
+1539218405 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/No.cpp
+	<iostream>
+	"../headers/libraries.h"
+
+1539218420 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/ponteiro.cpp
+	"../headers/libraries.h"
+
+1539218427 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/Re_hashing.cpp
+	<iostream>
+	"../headers/libraries.h"
+
+1539218433 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/Sond_quad.cpp
+	<iostream>
+	<math.h>
+	"../headers/libraries.h"
+
+1539218439 source:/home/josecarvalho/Documents/PROG/CodeBlocks/Trabalho_EDII_2018_3/src/Sondagem_Linear.cpp
+	<iostream>
+	"../headers/libraries.h"
 
